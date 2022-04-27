@@ -1,0 +1,21 @@
+import requests from "./request";
+import mockRequests from "./mockajax"
+
+export const reqCategoryList = ()=> requests({url:'/product/getBaseCategoryList'})
+export const reqGetBannerList =()=> mockRequests.get('/banner')
+export const reqGetFloorList =()=> mockRequests.get('/floor')
+export const reqGetSearchInfo =(params)=> requests({url:'/list',method:"post",data:params})
+export const reqGetDetailInfo =(skuId)=>requests({url:`/item/${skuId}`,method:'get'})
+export const reqAddShoppingCar =(skuId,skuNum)=>requests({url:`cart/addToCart/${ skuId }/${ skuNum }`,method:'post'})
+export const reqShopCartList =()=>requests({url:'/cart/cartList',method:'get'})
+export const reqDeleteShopCarList=(skuId)=>requests({url:`/cart/deleteCart/${skuId}`,method:'delete'})
+export const reqCheckedShopCar=(skuId,isChecked)=>requests({url:`/cart/checkCart/${skuId}/${isChecked}`,method:'get'})
+export const reqGetCode=(phone)=>requests({url:`/user/passport/sendCode/${phone}`,method:'get'})
+export const reqGetRegisterCode=(data)=>requests({url:'/user/passport/register',method:'post',data:data})
+export const reqGetUsers=(data)=>requests({url:'/user/passport/login',method:'post',data})
+export const reqGetUserInfo=()=>requests({url:'/user/passport/auth/getUserInfo',method:'get'})
+export const reqRemoveUser=()=>requests({url:'/user/passport/logout',method:'get'})
+export const reqGetUserAddressList=()=>requests({url:'/user/userAddress/auth/findUserAddressList',method:'get'}) 
+export const reqGetOrderInfo=()=>requests({url:'/order/auth/trade',method:'get'})
+export const reqGetSubmitOrder=(tradeNo,data)=>requests({url:`/order/auth/submitOrder?tradeNo=${tradeNo}`,method:'post',data:data})
+export const reqGetPayInfo=(orderId)=>requests({url:`/payment/weixin/createNative/${orderId}`,method:'get'})
